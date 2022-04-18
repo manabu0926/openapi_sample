@@ -1,0 +1,14 @@
+openapi: 3.0.0
+info:
+  title: API
+  description: Openapiのサンプル
+  version: v1
+servers:
+  # docker-composeでprismをホストしているポート番号に変更
+  - url: http://localhost:8085/
+paths:
+  # ここに追加したいURL及び参照ファイルのrefを記載
+  /api/users:
+    $ref: "./resources/path/users.yml"
+  /api/users/{id}:
+    $ref: "./resources/path/user.yml"

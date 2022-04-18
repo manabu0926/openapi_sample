@@ -1,0 +1,26 @@
+# openapiをdockerで立ち上げるための設定を記載
+version: '3.7'
+services:
+  openapi-sample-swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: openapi-sample-swagger-ui
+    volumes:
+      - ./openapi.yml:/usr/share/nginx/html/openapi.yml
+      - ./resources:/usr/share/nginx/html/resources
+    environment:
+      API_URL: openapi.yml
+    ports:
+      - "8080:8080"
+  openapi-sample-swagger-api:
+    image: stoplight/prism:3
+    container_name: openapi-sample-swagger-api
+    ports:
+      - "8085:4010"
+    command: mock -d -h 0.0.0.0 /openapi.yml
+    volumes:
+      - ./generated/openapi/openapi.yaml:/openapi.yml
+  openapi-sample-openapi-generator:
+    image: openapitools/openapi-generator-cli
+    container_name: openapi-sample-openapi-generator
+    volumes:
+      - ./:/workspace

@@ -1,0 +1,19 @@
+get:
+  summary: idに紐づくuserを取得する
+  operationId: getUser
+  tags:
+    - users
+  parameters:
+    - in: path # パラメータをパス内に含める
+      name: id
+      description: ユーザーのID
+      required: true
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/user.yml#/user"

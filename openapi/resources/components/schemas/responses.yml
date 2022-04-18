@@ -1,0 +1,97 @@
+ok:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: 登録しました。
+    errorDetails:
+      type: array
+      items:
+        $ref: "#/components/schemas/error_detail"
+created:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      $ref: "#/components/schemas/message"
+    errorDetails:
+      type: array
+      items:
+        $ref: "#/components/schemas/error_detail"
+bad_request:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: BadRequest
+    errorDetails:
+      type: array
+      items:
+        $ref: "#/components/schemas/error_detail"
+# 401はdeviseにresponseが決められてしまうためkeyが`error`になる
+unauthorized:
+  type: object
+  required:
+    - error
+  properties:
+    error:
+      type: string
+      example: 認証されていません
+forbidden:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: Forbidden
+not_found:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: Not Found
+unprocessable_entity_error:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: Unprocessable Entity
+    errorDetails:
+      type: array
+      items:
+        $ref: "#/components/schemas/error_detail"
+internal_server_error:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      example: Internal Server Error
+
+components:
+  schemas:
+    error_detail:
+      type: object
+      required:
+        - propertyName
+        - propertyMessage
+      properties:
+        propertyName:
+          type: string
+          description: エラーになったプロパティ
+          example: name
+        propertyMessage:
+          type: string
+          description: エラーメッセージ
+          example: 入力値が不正です。

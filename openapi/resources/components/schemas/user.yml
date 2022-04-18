@@ -1,0 +1,37 @@
+user:
+  type: object
+  required:
+    - name
+    - email
+    - gender
+    - paymentPrice
+    - familyCount
+    - createdAt
+  properties:
+    name:
+      type: string
+      example: 山田 太郎
+      description: ユーザーのフルネーム
+    email:
+      type: string
+      example: test@test.com
+      description: ユーザーのメールアドレス
+    gender:
+      type: string
+      enum: [man, woman]
+      example: man
+      description: 性別
+    address:
+      type: string
+      example: 東京都新宿区
+      description: 住所
+    familyCount:
+      type: integer
+      minimum: 1
+      maximum: 20
+      example: 1
+      description: 自分を含む家族の人数
+    createdAt:
+      type: string
+      format: date-time
+      description: 作成日

@@ -1,0 +1,56 @@
+get:
+  summary: すべてのユーザーを取得する
+  operationId: getUsers
+  tags:
+    - users
+  responses:
+    "200":
+      description: return user information
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../components/schemas/user.yml#/user"
+    "401":
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/responses.yml#/unauthorized"
+    "403":
+      description: "Forbidden"
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/responses.yml#/forbidden"
+    "404":
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/responses.yml#/not_found"
+    "500":
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/responses.yml#/internal_server_error"
+post:
+  summary: 新しいユーザーを追加する
+  operationId: addUser
+  tags:
+    - users
+  requestBody:
+    description: ユーザー作成の引数
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/user.yml#/user"
+        example:
+          name: 佐藤 二郎
+          email: new@test.com
+          example: qwertyudf123yuikassdc23
+  responses:
+    "201":
+      description: CREATED
