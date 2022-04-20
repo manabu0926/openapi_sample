@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:openapi/openapi.dart';
 
-import 'config/openapi_factory.dart';
+//
+// import 'config/openapi_factory.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,20 +29,20 @@ class MyHomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final users = useState<List<User>>([]);
+    // final users = useState<List<User>>([]);
 
-    // openapiからデータを取得＆stateに設定する処理を追加
-    getUser() async {
-      final Openapi openApi = OpenApiFactory().build();
-      final usersApi = openApi.getUsersApi();
-      final resUser = (await usersApi.getUsers()).data;
-      users.value = resUser!.toList();
-    }
+    // // openapiからデータを取得＆stateに設定する処理を追加
+    // getUser() async {
+    //   final Openapi openApi = OpenApiFactory().build();
+    //   final usersApi = openApi.getUsersApi();
+    //   final resUser = (await usersApi.getUsers()).data;
+    //   users.value = resUser!.toList();
+    // }
 
-    useEffect(() {
-      getUser();
-      return null;
-    }, []);
+    // useEffect(() {
+    //   getUser();
+    //   return null;
+    // }, []);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,11 +51,11 @@ class MyHomePage extends HookWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: users.value.map((u) => Text(u.name)).toList(),
+          children: [].map((u) => Text(u.name)).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getUser,
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
